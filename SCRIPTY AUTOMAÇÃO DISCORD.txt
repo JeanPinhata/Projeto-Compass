@@ -1,0 +1,21 @@
+#!/bin/bash
+
+WEBHOOK_URL= "Coloque aqui a URL copiada no discord"
+SITE_URL="Coloque aqui seu IP público"
+
+send_alert() {
+    MESSAGE="$1"
+    curl -H "Content-Type: application/json" -X POST -d "{\"content\": \"$MESSAGE\"}" "$WEBHOOK_URL"
+}
+
+check_site() {
+    RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" "$SITE_URL")
+
+    if [ "$RESPONSE" -eq 200 ]; then
+        echo "O site está funcionando corretamente."
+    else
+        send_alert " O site $SITE_URL está fora do ar!"
+    fi
+}
+
+check_site
