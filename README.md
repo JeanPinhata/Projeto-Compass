@@ -71,7 +71,8 @@ Logo depois clicamos em **Criar VPC**
 Agora faremos as configurações da nossa VPC. Marcamos o campo VPC e muito mais, escolhemos o nome que desejamos, conforme pede o projeto vamos configurar duas sub-redes públicas e duas privadas e então clicamos em criar VPC. 
 
 
-![alt text](<imagens/Captura de tela 2025-02-21 103133.png>)![alt text](<Captura de tela 2025-02-21 103152.png>)
+![alt text](<imagens/Captura de tela 2025-02-21 103133.png>)
+![alt text](<imagens/Captura de tela 2025-02-21 103152.png>)
 
 ## Criando uma instância EC2 
 
