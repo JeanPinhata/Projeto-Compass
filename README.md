@@ -218,6 +218,85 @@ server {
 Logo depois iremos criar uma pasta de armazenamento usando o código `mkdir -p /var/www/meusite`, em seguida dentro dessa pasta criaremos um arquivo para armazenar o nosso script em HTML usando o código `nano /var/www/meusite/index.html`. Segue o código em HTML
 
 
+```
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programa de Bolsas - Compass UOL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            color: white;
+            background: #0073e6;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background: #005bb5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Programa de Bolsas - Compass UOL</h1>
+        <p>O programa de bolsas da Compass UOL oferece oportunidades para estudantes e profissionais que desejam se aprofundar em tecnologia e computação em nuvem.</p>
+        <a href="#projeto-linux" class="btn">Saiba mais sobre o Projeto Linux</a>
+    </div>
+    
+    <div class="container" id="projeto-linux">
+        <h1>Projeto Linux - Deploy na AWS</h1>
+        <p>Este projeto ensina como criar uma infraestrutura na AWS e configurar um servidor web.</p>
+        <ul style="text-align: left;">
+            <li>Criar uma VPC</li>
+            <li>Configurar uma instância EC2</li>
+            <li>Instalar e configurar o Nginx</li>
+            <li>Criar um Webhook</li>
+            <li>Criar e publicar uma página HTML</li>
+        </ul>
+        <a href="#passos" class="btn">Ver Passo a Passo</a>
+    </div>
+
+    <div class="container" id="passos">
+        <h1>Passo a Passo</h1>
+        <h2>1. Criando uma VPC</h2>
+        <p>Usamos o AWS VPC para criar uma rede isolada na nuvem.</p>
+        <h2>2. Criando uma Instância EC2</h2>
+        <p>Selecionamos uma instância Linux e configuramos regras de acesso.</p>
+        <h2>3. Instalando Nginx</h2>
+        <p>Com o comando <code>sudo apt update && sudo apt install nginx</code> instalamos o servidor.</p>
+        <h2>4. Criando um Webhook</h2>
+        <p>Configuramos um webhook para deploy automático de arquivos HTML.</p>
+        <h2>5. Criando e Subindo uma Página HTML</h2>
+        <p>O arquivo HTML é copiado para <code>/var/www/html</code> no servidor.</p>
+    </div>
+</body>
+</html>
+```
 
 ![](<imagens/Captura de tela 2025-02-21 135119.png>)
 
