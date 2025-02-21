@@ -61,46 +61,56 @@ Além disso, foi implementado um sistema automatizado de monitoramento, aproveit
 ## Criando uma VPC
 Para criar uma VPC na AWS, é necessário acessar a página inicial do console da AWS e localizar a opção VPC na tela inicial, ou buscá-la na barra de pesquisas.
 
-![alt text](<Captura de tela 2025-02-21 154258.png>)
+![alt text](<imagens/Captura de tela 2025-02-21 154258.png>)
 
 Logo depois clicamos em **Criar VPC**
 
 
+![alt text](<imagens/Captura de tela 2025-02-21 102740.png>)
 
 Agora faremos as configurações da nossa VPC. Marcamos o campo VPC e muito mais, escolhemos o nome que desejamos, conforme pede o projeto vamos configurar duas sub-redes públicas e duas privadas e então clicamos em criar VPC. 
 
+
+![alt text](<imagens/Captura de tela 2025-02-21 103133.png>)![alt text](<Captura de tela 2025-02-21 103152.png>)
 
 ## Criando uma instância EC2 
 
 Para criar uma instância EC2 na AWS, é necessário acessar a página inicial do console da AWS e localizar a opção EC2 na tela inicial, ou buscá-la na barra de pesquisas.
 
 
+![alt text](<imagens/Captura de tela 2025-02-21 102649.png>)
 
 Logo seremos direcionados para uma outra tela onde localizaremos o botão **Executar instância**
 
 
+![alt text](<imagens/Captura de tela 2025-02-21 105321-1.png>)
 
 Então começaremos as configuração de nossa EC2. Começaremos colocando o nome e as tags da nossa instância e escolheremos o servidor Ubuntu, verificamos suas configurações e o tipo de instância que utilizaremos, que em nosso caso será a **T2 micro**.
 
+![alt text](<imagens/Captura de tela 2025-02-21 110228.png>)![alt text](<Captura de tela 2025-02-21 110517.png>)
 
 
 Agora partiremos para a configuração das chaves de segurança que nos permitirão a conexão SSH. Clicamos então em **criar novo par de chaves** e seremos direcionados para a página de configuração. Inserimos então o nome para o nosso par de chaves, selecionamos o tipo que em nosso caso será RSA e selecionamos o formato **.pem** que nos permitirá a conexão via SSH e então criamos o par de chaves. 
 
 
+![alt text](<imagens/Captura de tela 2025-02-21 110905.png>)![alt text](<Captura de tela 2025-02-21 111007.png>)
 
 Logo depois faremos as configurações de rede da nossa EC2. Primeiramente selecionaremos a VPC que acabamos de criar, escolheremos uma sub-net pública, habilitaremos o nosso Ip público, criaremos e daremos uma nome e descrição ao nosso grupo de segurança (o nome e a descrição podem ser o mesmo), selecionaremos então as portas podem ser acessadas a nossa instância. Selecionaremos a **porta SSH** que nos garantirá uma conexão remota segura a instância e também o **Meu IP (HTTP)** que garantirá a conexão ao site hospedado no servidor. Por fim, executaremos a nossa nova instância. 
 
+![alt text](<imagens/Captura de tela 2025-02-21 112114.png>)
 
 
 ## Conectando a instância via SSH 
 
 Para que a conexão aconteça precisamos executar a instância e então clicar no botão **conectar**. Seremos direcionados para uma outra página e devemos selecionar **Cliente SSH** e no final da página copiar a **chave ssh-i** que foi baixada automaticamente em nossa máquina quando criada para conexão a instância pela prompt de comando do windows. 
 
+![alt text](<imagens/Captura de tela 2025-02-21 113337.png>)
 
 
 Abrimos então a prompt de comando e abrimos a pasta onde se encontra nossa chave .pem, que em nosso caso está na pasta de downloads então usaremos o comando **cd Downloads** e então colaremos a chave copiada na instância e estabeleceremos a conexão. 
 
 
+![alt text](<imagens/Captura de tela 2025-02-21 114520.png>)
 
 
 ## Instalação do Nginx
@@ -108,26 +118,33 @@ Abrimos então a prompt de comando e abrimos a pasta onde se encontra nossa chav
 Após a conexão na instância utilizamos o comando: `sudo -i` para acessarmos o usuário root e continuarmos com as configurações. Antes de iniciarmos a instalação do servidor executaremos o comando `sudo apt update` que garantirá que todos os pacotes que instaleremos seja feita da versão mais recente possível. Logo depois executaremos o comando `sudo apt install nginx`, esse comando baixará e instalará a versão mais recente do NGINX. Com o comando `nginx -v` podemos verificar a versão que foi instalada em nosso sistema. 
 
 
+![alt text](<imagens/Captura de tela 2025-02-21 115222.png>)
 **_Esta imagem mostra que todos os comandos funcionaram e a instação foi bem sucedida._**
 
 ### *Teste Nginx*
 
 Na página da nossa instância EC2 podemos encontrar o nosso IP público, vamos copiar este IP e rodá-lo em nosso navegador, se o Nginx estiver instalado e configurado corretamente veremos a página inicial do Nginx. Se encontrar algum erro precisamos rever as nossas configurações. 
 
-![alt text](image-2.png)
+
+![alt text](<imagens/Captura de tela 2025-02-21 115818.png>)
 
 - Percebemos que o servidor está funcionando perfeitamente, caso o servidor esteja parado pelo comando `system ctl stop nginx`ou qualquer outra razão, não mais aparecerá esta página, mas uma tela de erro e isso mostra que o servidor foi parado sem nenhum erro. 
+
+
+![alt text](<imagens/Captura de tela 2025-02-21 120011-2.png>)
 
 ## Criação do Webhook utilizando Discord 
 
 Precisamos criar um Webhook que será notificado a cada minuto caso haja indisponibilidade do servidor, faremos isso utilizando o **Discord**. Abrimos o Discord e em sua tela inicial no menu a esquerda clicaremos no sinal de **+**, ele abrirá um tela para criação do servidor e escolheremos a opção **"criar o meu"** e em seguida a opção **"para meus amigos e eu"**. Logo depois destes passos damos um nome ao nosso servidor e cliclamos em **"Criar"**. 
 
+![alt text](<imagens/Captura de tela 2025-02-21 120432.png>)
 
 
 Agora com o servidor criado, vamos habilitar o nosso Webhook, que é uma ferramenta usada para permitir a comunicação entre duas aplicações e enviar notificações em tempo real.
 Dentro do servidor monitoramento, no menu a esquerda encontraremos **"geral"** e então clicaremos na engrenagem, logo depois a opção **"integrações"**, selecionaremos o botão **"criar webhook**", abrirá uma nova tela e então selecionaremos o botão "**novo wehook**" e então selecionaremos a aplicação que acabamos de criar e copiaremos a sua URL para que possamos automatizar o serviço. 
 
 
+![](<imagens/Captura de tela 2025-02-21 120653.png>)
 
 ## Criação de script de automação com bash 
 Para isso precisamos verificar a instalação do bash em nosso terminal utilizando o comando `bash -- version`, caso não esteja instalado utilizaremos o comando `sudo apt-get install bash`. Com o comando `nano`criaremos o nosso arquivo *nano monitoramento.sh* que armazenará nosso script. 
@@ -155,12 +172,14 @@ check_site() {
 
 check_site
 ```
+![alt text](<imagens/Captura de tela 2025-02-21 132338.png>)
 
 ## Automação do script usando Crontab
 
 O crontab é uma ferramenta do Ubuntu que permite agendar e automatizar a execução de tarefas em intervalos de tempo específicos. Para utilizá-lo digitaremos em nosso terminal o comando `crontab -e`. Ele abrirá um arquivo para edição e nele devemos inserir cinco astericos, cada um representa uma execução nos intervalos possíveis (minuto, hora, dia, mês e dia da semana), em seguida especificamos o caminho onde está armazenado nosso script. 
 
 
+![alt text](<imagens/Captura de tela 2025-02-21 132935.png>)
 
 
 ## Teste Webhook e automação de alertas. 
@@ -168,6 +187,7 @@ O crontab é uma ferramenta do Ubuntu que permite agendar e automatizar a execu�
 Realizaremos o teste para verificar o serviço. Inicialmente verificaremos se o serviço nginx está ativo usando o comando `systemctl status nginx`. Caso ele esteja ativo, precisamos interrompê-lo com o comando `systemctl stop nginx`. Se todas as configurações estiverem corretas depois de um minuto começaremos a receber os alertas no discord. 
 
 
+![alt text](<imagens/Captura de tela 2025-02-21 133356.png>)
 
 ## Criando a página em HTML
 
@@ -190,8 +210,13 @@ server {
 }
 
 ````
+![](<imagens/Captura de tela 2025-02-21 134310.png>)
 
 Logo depois iremos criar uma pasta de armazenamento usando o código `mkdir -p /var/www/meusite`, em seguida dentro dessa pasta criaremos um arquivo para armazenar o nosso script em HTML usando o código `nano /var/www/meusite/index.html`. Segue o código em HTML
+
+
+
+![](<imagens/Captura de tela 2025-02-21 135119.png>)
 
 Após o armazenamento do script devemos realizar os seguintes comandos:
 
@@ -207,6 +232,9 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 
 **Esses comandos são as configurações necessárias para que o script seja executado dentro do Nginx e seja transmitido online via HTTP para outros computadores. E depois disso temos um site, em html rodando dentro do serviço Nginx.**
 
+
+![alt text](<imagens/Captura de tela 2025-02-21 141515.png>)
+
 ## Testes finais
 
 Para finalizar vamos testar a funcionalidade do site e também o envio de alertas ao discord em casos onde o servidor nginx não estiver respondendo. 
@@ -216,12 +244,14 @@ Para finalizar vamos testar a funcionalidade do site e também o envio de alerta
 - Utilizamos o comando `systemctl start nginx` para ativar o servidor, então verificamos o status usando o comando `systemctl status nginx`. Essa imagem mostra o status do nginx e que o site está funcionando perfeitamente. 
 
 
+![alt text](<imagens/Captura de tela 2025-02-21 141728.png>)
 
 *Quando o servidor estiver inativo*
 
 - Utilizamos o comando `systemctl stop nginx` para ativar o servidor, então verificamos o status usando o comando `systemctl status nginx`. Essa imagem mostra que o site está fora do ar, o status inativo do nginx e os alertas chegando no discord. 
 
 
+![alt text](<imagens/Captura de tela 2025-02-21 142121.png>)
 
 ## Considerações finais 
 
