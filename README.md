@@ -87,13 +87,15 @@ Logo seremos direcionados para uma outra tela onde localizaremos o botão **Exec
 
 Então começaremos as configuração de nossa EC2. Começaremos colocando o nome e as tags da nossa instância e escolheremos o servidor Ubuntu, verificamos suas configurações e o tipo de instância que utilizaremos, que em nosso caso será a **T2 micro**.
 
-![alt text](<imagens/Captura de tela 2025-02-21 110228.png>)![alt text](<imagens/Captura de tela 2025-02-21 110517.png>)
+![alt text](<imagens/Captura de tela 2025-02-21 110228.png>)
+![alt text](<imagens/Captura de tela 2025-02-21 110517.png>)
 
 
 Agora partiremos para a configuração das chaves de segurança que nos permitirão a conexão SSH. Clicamos então em **criar novo par de chaves** e seremos direcionados para a página de configuração. Inserimos então o nome para o nosso par de chaves, selecionamos o tipo que em nosso caso será RSA e selecionamos o formato **.pem** que nos permitirá a conexão via SSH e então criamos o par de chaves. 
 
 
-![alt text](<imagens/Captura de tela 2025-02-21 110905.png>)![alt text](<imagens/Captura de tela 2025-02-21 111007.png>)
+![alt text](<imagens/Captura de tela 2025-02-21 110905.png>)
+![alt text](<imagens/Captura de tela 2025-02-21 111007.png>)
 
 Logo depois faremos as configurações de rede da nossa EC2. Primeiramente selecionaremos a VPC que acabamos de criar, escolheremos uma sub-net pública, habilitaremos o nosso Ip público, criaremos e daremos uma nome e descrição ao nosso grupo de segurança (o nome e a descrição podem ser o mesmo), selecionaremos então as portas podem ser acessadas a nossa instância. Selecionaremos a **porta SSH** que nos garantirá uma conexão remota segura a instância e também o **Meu IP (HTTP)** que garantirá a conexão ao site hospedado no servidor. Por fim, executaremos a nossa nova instância. 
 
