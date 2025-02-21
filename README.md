@@ -63,11 +63,9 @@ Além disso, foi implementado um sistema automatizado de monitoramento, aproveit
 ## Criando uma VPC
 Para criar uma VPC na AWS, é necessário acessar a página inicial do console da AWS e localizar a opção VPC na tela inicial, ou buscá-la na barra de pesquisas.
 
-![alt text](<Captura de tela 2025-02-21 102649-1.png>)
 
 Logo depois clicamos em **Criar VPC**
 
-![](<Captura de tela 2025-02-21 102740.png>)
 
 Agora faremos as configurações da nossa VPC. Marcamos o campo VPC e muito mais, escolhemos o nome que desejamos, conforme pede o projeto vamos configurar duas sub-redes públicas e duas privadas e então clicamos em criar VPC. 
 
@@ -78,7 +76,7 @@ Agora faremos as configurações da nossa VPC. Marcamos o campo VPC e muito mais
 
 Para criar uma instância EC2 na AWS, é necessário acessar a página inicial do console da AWS e localizar a opção EC2 na tela inicial, ou buscá-la na barra de pesquisas.
 
-![alt text](<Captura de tela 2025-02-21 102649-2.png>)
+
 
 Logo seremos direcionados para uma outra tela onde localizaremos o botão **Executar instância**
 
@@ -87,16 +85,15 @@ Logo seremos direcionados para uma outra tela onde localizaremos o botão **Exec
 Então começaremos as configuração de nossa EC2. Começaremos colocando o nome e as tags da nossa instância e escolheremos o servidor Ubuntu, verificamos suas configurações e o tipo de instância que utilizaremos, que em nosso caso será a **T2 micro**.
 
 ![](<Captura de tela 2025-02-21 110228.png>)
-![alt text](image.png)
 
 Agora partiremos para a configuração das chaves de segurança que nos permitirão a conexão SSH. Clicamos então em **criar novo par de chaves** e seremos direcionados para a página de configuração. Inserimos então o nome para o nosso par de chaves, selecionamos o tipo que em nosso caso será RSA e selecionamos o formato **.pem** que nos permitirá a conexão via SSH e então criamos o par de chaves. 
 
-![alt text](<Captura de tela 2025-02-21 110905.png>)
-![alt text](<Captura de tela 2025-02-21 111007.png>)
+![](<Captura de tela 2025-02-21 110905.png>)
+![](<Captura de tela 2025-02-21 111007.png>)
 
 Logo depois faremos as configurações de rede da nossa EC2. Primeiramente selecionaremos a VPC que acabamos de criar, escolheremos uma sub-net pública, habilitaremos o nosso Ip público, criaremos e daremos uma nome e descrição ao nosso grupo de segurança (o nome e a descrição podem ser o mesmo), selecionaremos então as portas podem ser acessadas a nossa instância. Selecionaremos a **porta SSH** que nos garantirá uma conexão remota segura a instância e também o **Meu IP (HTTP)** que garantirá a conexão ao site hospedado no servidor. Por fim, executaremos a nossa nova instância. 
 
-![alt text](<Captura de tela 2025-02-21 112114.png>)
+![](<Captura de tela 2025-02-21 112114.png>)
 
 ## Conectando a instância via SSH 
 
@@ -116,7 +113,6 @@ Após a conexão na instância utilizamos o comando: `sudo -i` para acessarmos o
 
 ![alt text](image-1.png)
 **_Esta imagem mostra que todos os comandos funcionaram e a instação foi bem sucedida._**
-
 
 ### *Teste Nginx*
 
@@ -180,7 +176,7 @@ O crontab é uma ferramenta do Ubuntu que permite agendar e automatizar a execu�
 
 Realizaremos o teste para verificar o serviço. Inicialmente verificaremos se o serviço nginx está ativo usando o comando `systemctl status nginx`. Caso ele esteja ativo, precisamos interrompê-lo com o comando `systemctl stop nginx`. Se todas as configurações estiverem corretas depois de um minuto começaremos a receber os alertas no discord. 
 
-![alt text](image-7.png)
+
 
 ## Criando a página em HTML
 
@@ -202,7 +198,7 @@ server {
     }
 }
 ```
-![alt text](image-8.png)
+
 
 Logo depois iremos criar uma pasta de armazenamento usando o código `mkdir -p /var/www/meusite`, em seguida dentro dessa pasta criaremos um arquivo para armazenar o nosso script em HTML usando o código `nano /var/www/meusite/index.html`. Segue o código em HTML
 
@@ -285,7 +281,7 @@ Logo depois iremos criar uma pasta de armazenamento usando o código `mkdir -p /
 </body>
 </html>
 ```
-![alt text](image-9.png)
+
 
 Após o armazenamento do script devemos realizar os seguintes comandos:
 
@@ -301,7 +297,7 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 
 **Esses comandos são as configurações necessárias para que o script seja executado dentro do Nginx e seja transmitido online via HTTP para outros computadores. E depois disso temos um site, em html rodando dentro do serviço Nginx.**
 
-![alt text](image-11.png)
+
 
 ## Testes finais
 
@@ -311,7 +307,6 @@ Para finalizar vamos testar a funcionalidade do site e também o envio de alerta
 
 - Utilizamos o comando `systemctl start nginx` para ativar o servidor, então verificamos o status usando o comando `systemctl status nginx`. Essa imagem mostra o status do nginx e que o site está funcionando perfeitamente. 
 
-![alt text](image-12.png)
 
 
 *Quando o servidor estiver inativo*
