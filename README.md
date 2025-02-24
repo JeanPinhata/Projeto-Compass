@@ -1,4 +1,4 @@
-# **Projeto Compass**
+# **Atividade de Linux PB COMPASS UOL- JAN 2025 | DevSecOps **
 
 ### Este repositório apresenta a implementação de uma infraestrutura em nuvem utilizando serviços da AWS, desenvolvida como parte do Programa de Bolsas (PB) da Compass UOL, na trilha de estudos em AWS e DevSecOps.
 
@@ -6,13 +6,13 @@
 1. Resumo
    
 
-2. Objetivos
+2. Tecnologias Utilizadas
+
+3. Objetivos
       - Configuração ambiente AWS
       - Configuração servidor web 
       - Automatização de alertas 
       - Testes e monitoramento 
-
-3. Tecnologias Utilizadas
 
 4. Passo a Passo 
    - Criando uma VPC
@@ -38,14 +38,7 @@ A atividade propõe que os participantes devem criar uma VPC e uma instância EC
 
 Além disso, foi implementado um sistema automatizado de monitoramento, aproveitando a funcionalidade de Webhook do Discord. Para isso, foi desenvolvido um script em Bash que verifica a disponibilidade do site a cada minuto e envia um alerta para um canal no Discord caso o serviço apresente alguma indisponibilidade.
  
-## *2. Objetivos*
-
-- **Capacitação em nuvem:** Adquirir conhecimento prático na criação e configuração de uma estrutura em Cloud dentro da AWS utilizando serviços como VPC e instância EC2. 
-- **Configuração servidor web:** Configurar o servidor Nginx para que hospede uma página simples criada com HTML. 
-- **Configurações de segurança:** Adquirir conhecimentos de práticas de segurança e acesso remoto via SSH.
-- **Testes e monitoramento:** Desenvolver um script que verifique a disponibilidade do site e a integração via Webhook do Discord para alertas automáticos em caso de indisponibilidade. 
-
-## *3. Tecnologias Utilizadas*
+## *2. Tecnologias Utilizadas*
 
 - Linux 
 - AWS
@@ -54,7 +47,14 @@ Além disso, foi implementado um sistema automatizado de monitoramento, aproveit
 - Ngix
 - HTML
 - Discord
-  
+   
+## *3. Objetivos*
+
+- **Capacitação em nuvem:** Adquirir conhecimento prático na criação e configuração de uma estrutura em Cloud dentro da AWS utilizando serviços como VPC e instância EC2. 
+- **Configuração servidor web:** Configurar o servidor Nginx para que hospede uma página simples criada com HTML. 
+- **Configurações de segurança:** Adquirir conhecimentos de práticas de segurança e acesso remoto via SSH.
+- **Testes e monitoramento:** Desenvolver um script que verifique a disponibilidade do site e a integração via Webhook do Discord para alertas automáticos em caso de indisponibilidade. 
+
 
 ## *4. Passo a Passo*
 
@@ -74,6 +74,13 @@ Agora faremos as configurações da nossa VPC. Marcamos o campo VPC e muito mais
 ![alt text](<imagens/Captura de tela 2025-02-21 103133.png>)
 ![alt text](<imagens/Captura de tela 2025-02-21 103152.png>)
 
+Então faremos a configuração do nosso grupo de segurança (Security Group). Para tal iremos no menu lateral a esquerda da tela e iremos selecionar a opção **Grupos de Segurança**. Seremos direcionados para uma nova página e clicaremos no botão **Criar grupo de segurança** na parte superior do lado direito da tela. 
+
+![alt text](<imagens/Captura de tela 2025-02-24 155332.png>)
+
+Nesta nova página faremos nossas configurações do Grupo de segurança. Escolhemos o nome e também o utilizaremos na descrição, então selecionamos a VPC criada para vincularmos o grupo de segurança e faremos então as configurações de entrada, que nos permitirão o acesso remoto a nossa instância. Clicamos então em adcionar regra e abriremos dois campos para selecionarmos uma porta tipo SSH e a outra porta 80. Então clicamos no botão para criar o nosso grupo de segurança. 
+
+![alt text](<imagens/Captura de tela 2025-02-24 155253.png>)
 ## Criando uma instância EC2 
 
 Para criar uma instância EC2 na AWS, é necessário acessar a página inicial do console da AWS e localizar a opção EC2 na tela inicial, ou buscá-la na barra de pesquisas.
@@ -91,17 +98,14 @@ Então começaremos as configuração de nossa EC2. Começaremos colocando o nom
 ![alt text](<imagens/Captura de tela 2025-02-21 110228.png>)
 ![alt text](<imagens/Captura de tela 2025-02-21 110517.png>)
 
+Agora partiremos para a configuração das chaves de segurança que nos permitirão a conexão SSH. Clicamos então em criar novo par de chaves e seremos direcionados para a página de configuração. Inserimos então o nome para o nosso par de chaves, selecionamos o tipo que em nosso caso será RSA e selecionamos o formato .pem que nos permitirá a conexão via SSH e então criamos o par de chaves.
 
-Agora partiremos para a configuração das chaves de segurança que nos permitirão a conexão SSH. Clicamos então em **criar novo par de chaves** e seremos direcionados para a página de configuração. Inserimos então o nome para o nosso par de chaves, selecionamos o tipo que em nosso caso será RSA e selecionamos o formato **.pem** que nos permitirá a conexão via SSH e então criamos o par de chaves. 
+![alt text](<Captura de tela 2025-02-21 110905.png>)
+![alt text](<Captura de tela 2025-02-21 111007.png>)
 
+Logo depois faremos as configurações de rede da nossa EC2. Primeiramente selecionaremos a VPC que acabamos de criar, escolheremos uma sub-net pública, habilitaremos o nosso Ip público, clicaremos em selecionar grupo de segurança existente e utilizaremos o que acabamos de criar, selecionaremos então as portas podem ser acessadas a nossa instância. Selecionaremos a **porta SSH** que nos garantirá uma conexão remota segura a instância e também o **Meu IP (HTTP)** que garantirá a conexão ao site hospedado no servidor. Por fim, executaremos a nossa nova instância. 
 
-![alt text](<imagens/Captura de tela 2025-02-21 110905.png>)
-![alt text](<imagens/Captura de tela 2025-02-21 111007.png>)
-
-Logo depois faremos as configurações de rede da nossa EC2. Primeiramente selecionaremos a VPC que acabamos de criar, escolheremos uma sub-net pública, habilitaremos o nosso Ip público, criaremos e daremos uma nome e descrição ao nosso grupo de segurança (o nome e a descrição podem ser o mesmo), selecionaremos então as portas podem ser acessadas a nossa instância. Selecionaremos a **porta SSH** que nos garantirá uma conexão remota segura a instância e também o **Meu IP (HTTP)** que garantirá a conexão ao site hospedado no servidor. Por fim, executaremos a nossa nova instância. 
-
-![alt text](<imagens/Captura de tela 2025-02-21 112114.png>)
-
+![alt text](<imagens/Captura de tela 2025-02-24 163924.png>)
 
 ## Conectando a instância via SSH 
 
@@ -150,7 +154,8 @@ Dentro do servidor monitoramento, no menu a esquerda encontraremos **"geral"** e
 ![](<imagens/Captura de tela 2025-02-21 120653.png>)
 
 ## Criação de script de automação com bash 
-Para isso precisamos verificar a instalação do bash em nosso terminal utilizando o comando `bash -- version`, caso não esteja instalado utilizaremos o comando `sudo apt-get install bash`. Com o comando `nano`criaremos o nosso arquivo *nano monitoramento.sh* que armazenará nosso script. 
+
+O Bash é um interpretador de linha de comando que permite executar comandos e scripts em Linux.Para isso precisamos verificar a instalação do bash em nosso terminal utilizando o comando `bash -- version`, caso não esteja instalado utilizaremos o comando `sudo apt-get install bash`. Com o comando `nano`criaremos o nosso arquivo *nano monitoramento.sh* e então dentro dele armazenaremos o nosso script. Logo depois de escrevermos o nosso script daremos o comando **Ctrl + x** para salvar as alterações em nosso arquivo e então voltaremos ao terminal. Segue abaixo o script utilizado.  
 
 ```
 #!/bin/bash
@@ -195,7 +200,7 @@ Realizaremos o teste para verificar o serviço. Inicialmente verificaremos se o 
 ## Criando a página em HTML
 
 
-Neste passo faremos a configuração do Gninx para hospedar a nossa página HTML. Utilizaremos o comando `nano /etc/nginx/sites-available/meusite` para colocarmos o seguinte código:
+Neste passo faremos a configuração do Gninx para hospedar a nossa página HTML. Utilizaremos o comando `nano /etc/nginx/sites-available/meusite` para criarmos um arquivo Nano que guardará o código a seguir.
 
 ```
 server {
@@ -337,7 +342,7 @@ Para finalizar vamos testar a funcionalidade do site e também o envio de alerta
 
 ## Considerações finais 
 
-Concluímos que o projeto atinge com sucesso seus objetivos, entregando uma solução prática e automatizada para o monitoramento de serviços web. A atividade proposta, integrando VPC, EC2, Nginx e Discord, simplifica a supervisão do sistema e garante uma resposta ágil a possível problemas, otimizando a sua eficiência operacional.
+Concluímos que o projeto atingiu com sucesso seus objetivos, entregando uma solução prática e automatizada para o monitoramento de serviços web. A infraestrutura, baseada em VPC, EC2 e Nginx, garante a segurança e o desempenho do sistema de monitoramento. A integração com o Discord garante que as equipes sejam notificadas sobre qualquer falha, possibilitando uma ação rápida e eficiente. Como resultado, o projeto otimiza a eficiência operacional, reduzindo o tempo de resposta a incidentes e aumentando a disponibilidade dos serviços. Além disso, a solução é escalável e pode ser adaptada para monitorar outros serviços no futuro.
 
 ## Referências 
 
