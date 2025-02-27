@@ -160,27 +160,38 @@ O Bash é um interpretador de linha de comando que permite executar comandos e s
 ```
 #!/bin/bash
 
-WEBHOOK_URL= "Coloque aqui a URL copiada no discord"
-SITE_URL="Coloque aqui seu IP público"
+WEBHOOK_URL="https://discordapp.com/api/webhooks/1340868095241228348/_mxA_y-gShzrY3A3-irS09qkWre58E2FsogqyaQ-W24BM4Mnew5G6mCigpMIa3Gsha1w"
+SITE_URL="http://localhost" 
 
 send_alert() {
-    MESSAGE="$1"
-    curl -H "Content-Type: application/json" -X POST -d "{\"content\": \"$MESSAGE\"}" "$WEBHOOK_URL"
+  MESSAGE="$1"
+  curl -H "Content-Type: application/json" -X POST -d "{\"content\": \"$MESSAGE\"}" "$WEBHOOK_URL"
 }
 
 check_site() {
-    RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" "$SITE_URL")
+  RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" "$SITE_URL")
 
-    if [ "$RESPONSE" -eq 200 ]; then
-        echo "O site está funcionando corretamente."
-    else
-        send_alert " O site $SITE_URL está fora do ar!"
+  if [ "$RESPONSE" -eq 200 ]; then
+    echo "O site está funcionando corretamente."
+  else
+    send_alert "O site 54.221.175.112 está fora do ar!"
+
+    # Verifica se o Nginx está em execução
+    if ! systemctl is-active --quiet nginx; then
+      echo "Nginx não está em execução. Reiniciando..."
+      sudo systemctl restart nginx
+      if systemctl is-active --quiet nginx; then
+        send_alert "Nginx reiniciado com sucesso!"
+      else
+        send_alert "Falha ao reiniciar o Nginx!"
+      fi
     fi
+  fi
 }
 
 check_site
 ```
-![alt text](<imagens/Captura de tela 2025-02-21 132338.png>)
+![alt text](<imagens/Captura de tela 2025-02-27 121357.png>)
 
 ## Automação do script usando Crontab
 
@@ -204,21 +215,19 @@ Neste passo faremos a configuração do Gninx para hospedar a nossa página HTML
 
 ```
 server {
-
-   listen 80;
-
-    server_name (Aqui utilize seu IP público)
+    listen 80;
+    server_name 54.221.175.112;
 
     root /var/www/meusite;
     index index.html;
 
-    location /{
-        try_files $uri $uri/ =404;
-    }
+    location / {
+        try_files $uri $uri/ =404;
+    }
 }
 
 ````
-![](<imagens/Captura de tela 2025-02-21 134310.png>)
+![alt text](<imagens/Captura de tela 2025-02-27 121423.png>)
 
 Logo depois iremos criar uma pasta de armazenamento usando o código `mkdir -p /var/www/meusite`, em seguida dentro dessa pasta criaremos um arquivo para armazenar o nosso script em HTML usando o código `nano /var/www/meusite/index.html`. Segue o código em HTML
 
