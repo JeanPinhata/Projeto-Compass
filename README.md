@@ -360,7 +360,7 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 **Esses comandos são as configurações necessárias para que o script seja executado dentro do Nginx e seja transmitido online via HTTP para outros computadores. E depois disso temos um site, em html rodando dentro do serviço Nginx.**
 
 
-![alt text](<imagens/Captura de tela 2025-02-21 141515.png>)
+![alt text](<imagens/Captura de tela 2025-02-27 131243.png>)
 
 ## Testes finais
 
@@ -371,14 +371,14 @@ Para finalizar vamos testar a funcionalidade do site e também o envio de alerta
 - Utilizamos o comando `systemctl start nginx` para ativar o servidor, então verificamos o status usando o comando `systemctl status nginx`. Essa imagem mostra o status do nginx e que o site está funcionando perfeitamente. 
 
 
-![alt text](<imagens/Captura de tela 2025-02-21 141728.png>)
+
 
 *Quando o servidor estiver inativo*
 
 - Utilizamos o comando `systemctl stop nginx` para ativar o servidor, então verificamos o status usando o comando `systemctl status nginx`. Essa imagem mostra que o site está fora do ar, o status inativo do nginx e os alertas chegando no discord. 
 
 
-![alt text](<imagens/Captura de tela 2025-02-21 142121.png>)
+![alt text](<imagens/Captura de tela 2025-02-27 131813.png>)
 
 ## Considerações finais 
 
