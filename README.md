@@ -370,7 +370,7 @@ Para finalizar vamos testar a funcionalidade do site e também o envio de alerta
 
 - Utilizamos o comando `systemctl start nginx` para ativar o servidor, então verificamos o status usando o comando `systemctl status nginx`. Essa imagem mostra o status do nginx e que o site está funcionando perfeitamente. 
 
-
+![alt text](<imagens/Captura de tela 2025-02-27 131602.png>)
 
 
 *Quando o servidor estiver inativo*
