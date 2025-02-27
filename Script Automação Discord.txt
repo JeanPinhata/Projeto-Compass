@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WEBHOOK_URL="https://discordapp.com/api/webhooks/1340868095241228348/_mxA_y-gShzrY3A3-irS09qkWre58E2FsogqyaQ-W24BM4Mnew5G6mCigpMIa3Gsha1w"
+WEBHOOK_URL="Cole aqui sua URL do WEBHOOK"
 SITE_URL="http://localhost" 
 
 send_alert() {

@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name 54.221.175.112;
+    server_name Cole aqui se IP PÚBLICO;
 
     root /var/www/meusite;
     index index.html;
