@@ -1,0 +1,11 @@
+server {
+    listen 80;
+    server_name 54.221.175.112;
+
+    root /var/www/meusite;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}

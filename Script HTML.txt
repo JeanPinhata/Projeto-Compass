@@ -6,37 +6,70 @@
     <title>Programa de Bolsas - Compass UOL</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background: linear-gradient(135deg, #e0f2f7, #cce0e5);
             text-align: center;
+            color: #333;
         }
         .container {
             width: 80%;
-            margin: auto;
+            max-width: 900px;
+            margin: 30px auto;
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .container:hover {
+            transform: translateY(-5px);
         }
         h1 {
-            color: #333;
+            color: #0073e6;
+            margin-bottom: 20px;
         }
         .btn {
             display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
+            padding: 12px 25px;
+            margin: 15px;
             color: white;
-            background: #0073e6;
+            background: linear-gradient(135deg, #0073e6, #005bb5);
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             text-decoration: none;
             font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease, transform 0.2s ease;
         }
         .btn:hover {
-            background: #005bb5;
+            background: linear-gradient(135deg, #005bb5, #004a91);
+            transform: translateY(-3px);
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: left;
+        }
+        li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #0073e6;
+        }
+        h2 {
+            color: #005bb5;
+            margin-top: 25px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
         }
     </style>
 </head>
@@ -46,11 +79,10 @@
         <p>O programa de bolsas da Compass UOL oferece oportunidades para estudantes e profissionais que desejam se aprofundar em tecnologia e computação em nuvem.</p>
         <a href="#projeto-linux" class="btn">Saiba mais sobre o Projeto Linux</a>
     </div>
-    
     <div class="container" id="projeto-linux">
         <h1>Projeto Linux - Deploy na AWS</h1>
         <p>Este projeto ensina como criar uma infraestrutura na AWS e configurar um servidor web.</p>
-        <ul style="text-align: left;">
+        <ul>
             <li>Criar uma VPC</li>
             <li>Configurar uma instância EC2</li>
             <li>Instalar e configurar o Nginx</li>
@@ -59,7 +91,6 @@
         </ul>
         <a href="#passos" class="btn">Ver Passo a Passo</a>
     </div>
-
     <div class="container" id="passos">
         <h1>Passo a Passo</h1>
         <h2>1. Criando uma VPC</h2>

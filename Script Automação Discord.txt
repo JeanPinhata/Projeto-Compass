@@ -1,0 +1,32 @@
+#!/bin/bash
+
+WEBHOOK_URL="https://discordapp.com/api/webhooks/1340868095241228348/_mxA_y-gShzrY3A3-irS09qkWre58E2FsogqyaQ-W24BM4Mnew5G6mCigpMIa3Gsha1w"
+SITE_URL="http://localhost" 
+
+send_alert() {
+  MESSAGE="$1"
+  curl -H "Content-Type: application/json" -X POST -d "{\"content\": \"$MESSAGE\"}" "$WEBHOOK_URL"
+}
+
+check_site() {
+  RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" "$SITE_URL")
+
+  if [ "$RESPONSE" -eq 200 ]; then
+    echo "O site está funcionando corretamente."
+  else
+    send_alert "O site 54.221.175.112 está fora do ar!"
+
+    # Verifica se o Nginx está em execução
+    if ! systemctl is-active --quiet nginx; then
+      echo "Nginx não está em execução. Reiniciando..."
+      sudo systemctl restart nginx
+      if systemctl is-active --quiet nginx; then
+        send_alert "Nginx reiniciado com sucesso!"
+      else
+        send_alert "Falha ao reiniciar o Nginx!"
+      fi
+    fi
+  fi
+}
+
+check_site
