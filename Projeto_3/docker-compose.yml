@@ -10,4 +10,4 @@ services:
       WORDPRESS_DB_PASSWORD: testewordpress
       WORDPRESS_DB_NAME: dbwordpress
     volumes:
-      -  - /efs:/var/www/html
+      - /wordpress:/var/www/html
