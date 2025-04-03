@@ -26,17 +26,12 @@ mkdir -p /data
 
 # Monta o sistema de arquivos EFS
 # Substituir pelo mount do seu EFS
-sudo mount -t efs -o tls fs-04b1f35e5f4903d02:/ efs
+sudo mkdir /efs
+sudo mount -t efs -o tls fs-04b1f35e5f4903d02:/ /efs
 
 #Pega o docker compose do github
 wget -O /home/ec2-user/docker-compose.yml https://raw.githubusercontent.com/JeanPinhata/Projeto-Compass/refs/heads/main/Projeto_3/docker-compose.yml
 sudo chown ec2-user:ec2-user /home/ec2-user/docker-compose.yml
-
-# Ajusta permissões do arquivo
-chown ec2-user:ec2-user /home/ec2-user/docker-compose.yml
-
-# Inicia os containers com Docker Compose
-cd /home/ec2-user && docker-compose up -d
 
 # Ajusta permissões do arquivo
 chown ec2-user:ec2-user /home/ec2-user/docker-compose.yml
