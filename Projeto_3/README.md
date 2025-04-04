@@ -43,6 +43,10 @@ Então faremos a configuração dos nossos grupos de segurança (Security Group)
 
 ![alt text](imagens/image.png)
 
+Agora faremos a configuração do NAT Gateway. Noi menu lateral esquerdo selecionaremos a opção Gateways NAT e depois criar gateway NAT. Na próxima página escolheremos o nome, a subnet pública e alocaremos um Ip elástico. 
+
+![alt text](<imagens/nat gateway.png>)
+
 Nesta nova página faremos nossas configurações dos Grupos de segurança. Daremos o nome, colocaremos a descrição e associaremos a VPC que criamos para o projeto, logo depois criamos as regras de entrada e saída de cada uma delas. 
 
 ![alt text](imagens/image-1.png)
