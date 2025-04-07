@@ -5,12 +5,12 @@ services:
     ports:
       - "80:80"
     environment:
-      WORDPRESS_DB_HOST: bdwordpress.cx4kawcai64i.us-east-1.rds.amazonaws.com
-      WORDPRESS_DB_USER: admin
-      WORDPRESS_DB_PASSWORD: testewordpress
-      WORDPRESS_DB_NAME: db_wordpress
+      WORDPRESS_DB_HOST: seu_endpoint_do_banco_de_dados
+      WORDPRESS_DB_USER: o_usuario_do_seu_rds
+      WORDPRESS_DB_PASSWORD: sua_senha
+      WORDPRESS_DB_NAME: o_nome_da_sua_database
     volumes:
-      - /wordpress:/var/www/html
+      - /home/ec2-user/pastadesuapreferencia:/var/www/html
     networks:
       - tunel
 
